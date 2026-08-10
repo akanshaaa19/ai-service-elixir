@@ -1,26 +1,23 @@
 kind: Environment
-name: ai-service-elixir-sandbox
+name: eli
 type: primary
 
 components:
-  - kind: Service
+  - kind: Application
     name: ai-service-elixir
-    gitRepo: https://github.com/akanshaaa19/ai-service-elixir.git
+    gitRepo: 'https://github.com/akanshaaa19/ai-service-elixir.git'
     gitBranch: main
+    gitApplicationPath: /
     dockerCompose:
       build:
-        context: .
+        context: ./
         dockerfile: Dockerfile
       ports:
         - '4001:4001'
       environment:
         PORT: '4001'
-        MCP_BASE_DOMAIN: '{{ env.variables.MCP_BASE_DOMAIN }}'
-        MCP_STAFF_USERNAME: '{{ env.variables.MCP_STAFF_USERNAME }}'
-        MCP_STAFF_PASSWORD: '{{ env.variables.MCP_STAFF_PASSWORD }}'
-        ANTHROPIC_API_KEY: '{{ env.variables.ANTHROPIC_API_KEY }}'
-        OPENAI_API_KEY: '{{ env.variables.OPENAI_API_KEY }}'
     hosts:
       - hostname: 'ai-service-elixir-{{ env.base_domain }}'
+        path: /
         servicePort: 4001
         public: true
