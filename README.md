@@ -14,5 +14,5 @@ Step 2 scope only (prove the wire): `/health` and `/run` (echo), no real `LangCh
 
 ```
 mix deps.get
-mix run --no-halt
+mix run --no-halt   # listens on 4002 (4001 collides with Glific dev HTTPS)
 ```
